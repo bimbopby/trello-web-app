@@ -1,33 +1,37 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
+import HTMLReactParser from 'html-react-parser'
+import { MODAL_ACTION_CLOSE,MODAL_ACTION_CONFIRM } from '../../utilities/constants'
 
-function Example() {
-  const [show, setShow] = useState(false)
-
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+function ConfirmModal(props) {
+  const { title, content, show, onAction } = props
 
   return (
-    <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
+    
+      <Modal 
+      show={show} 
+      onHide={() => onAction('close')}
+      backdrop="static"  
+      animation={false}
+      keyboard={false}
 
-      <Modal show={show} onHide={handleClose} animation={false}>
+      >
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title className="h5">{HTMLReactParser(title)}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>{HTMLReactParser(content)}</Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={() => onAction(MODAL_ACTION_CLOSE)}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          <Button variant="primary" onClick={() => onAction(MODAL_ACTION_CONFIRM)}>
+            Confirm
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    
   );
 }
+
+export default ConfirmModal
