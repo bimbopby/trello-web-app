@@ -73,9 +73,9 @@ function BoardContent() {
 
         ) )}
       </Container>
-        <div className="add-new-column">
+      <div className="add-new-column">
         <i className="fa fa-plus icon" />Add another column
-        </div>
+      </div>
 
     </div>
   )
