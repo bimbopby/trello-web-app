@@ -3,6 +3,7 @@ import { Container, Draggable } from 'react-smooth-dnd'
 import './Column.scss'
 import Card from '../Card/Card'
 import { mapOrder } from '../../utilities/sorts'
+import { Dropdown } from 'react-bootstrap'
 
 
 function Column( props) {
@@ -11,7 +12,23 @@ function Column( props) {
 
   return (
     <div className="column">
-      <header className="column-drag-handle">{column.title}</header>
+      <header className="column-drag-handle">
+        <div className="column-title">{column.title}</div>
+        <div className="column-dropdown-actions">
+          <Dropdown>
+            <Dropdown.Toggle className="dropdown-btn" size='sm' id="dropdown-basic" />
+            
+
+            <Dropdown.Menu>
+              <Dropdown.Item>Add card...</Dropdown.Item>
+              <Dropdown.Item>Remove column...</Dropdown.Item>
+              <Dropdown.Item>Move all card in this column</Dropdown.Item>
+              <Dropdown.Item>Archive all card in this column</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+       
+      </header>
       <div className="card-list">
         <Container
           groupName="col"
