@@ -9,7 +9,12 @@ function Card(props) {
     <div className="card-item">
       {
         card.cover &&
-      <img src={card.cover} className="card-cover" alt='duc-alt-img' onMouseDown={ e => e.preventDefault()} />
+      <img
+        src={card.cover}
+        className="card-cover"
+        alt='duc-alt-img'
+        onMouseDown={ e => e.preventDefault()}
+      />
       }
       {card.title}
 
